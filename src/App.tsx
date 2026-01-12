@@ -11,24 +11,65 @@ export type Produto = {
   imagem: string
 }
 
+const ListaProdutos: Produto[] = [
+  {
+    "id": 1,
+    "nome": "Bermuda Adidas Masculina",
+    "imagem": "https://api-ebac.vercel.app/ebac_sports/bermuda.webp",
+    "preco": 129.9
+  },
+  {
+    "id": 2,
+    "nome": "Camisa Corinthians 1 - 22/23",
+    "imagem": "https://api-ebac.vercel.app/ebac_sports/corinthians.webp",
+    "preco": 249.9
+  },
+  {
+    "id": 3,
+    "nome": "Bola de Vôlei Penalty",
+    "imagem": "https://api-ebac.vercel.app/ebac_sports/bola.webp",
+    "preco": 139.9
+  },
+  {
+    "id": 4,
+    "nome": "Camisa Internacional 2 - 22/23",
+    "imagem": "https://api-ebac.vercel.app/ebac_sports/internacional.webp",
+    "preco": 249.9
+  },
+  {
+    "id": 5,
+    "nome": "Patins Preto",
+    "imagem": "https://api-ebac.vercel.app/ebac_sports/patins.webp",
+    "preco": 399.9
+  },
+  {
+    "id": 6,
+    "nome": "Camisa Kansas City Chiefs",
+    "imagem": "https://api-ebac.vercel.app/ebac_sports/camisa_kansas.webp",
+    "preco": 379.9
+  },
+  {
+    "id": 7,
+    "nome": "Camisa Real Madrid 1 - 22/23",
+    "imagem": "https://api-ebac.vercel.app/ebac_sports/real_madrid.webp",
+    "preco": 349.9
+  },
+  {
+    "id": 8,
+    "nome": "Camisa Milan 1 - 22/23",
+    "imagem": "https://api-ebac.vercel.app/ebac_sports/milan.webp",
+    "preco": 349.9
+  }
+]
+
 function App() {
   const [produtos, setProdutos] = useState<Produto[]>([])
   const [carrinho, setCarrinho] = useState<Produto[]>([])
   const [favoritos, setFavoritos] = useState<Produto[]>([])
 
   useEffect(() => {
-    fetch('https://api-ebac.vercel.app/api/ebac_sports')
-      .then((res) => res.json())
-      .then((res) => setProdutos(res))
+    setProdutos(ListaProdutos)
   }, [])
-
-  function adicionarAoCarrinho(produto: Produto) {
-    if (carrinho.find((p) => p.id === produto.id)) {
-      alert('Item já adicionado')
-    } else {
-      setCarrinho([...carrinho, produto])
-    }
-  }
 
   function favoritar(produto: Produto) {
     if (favoritos.find((p) => p.id === produto.id)) {
@@ -36,6 +77,14 @@ function App() {
       setFavoritos(favoritosSemProduto)
     } else {
       setFavoritos([...favoritos, produto])
+    }
+  }
+
+  function adicionarAoCarrinho(produto: Produto) {
+    if (carrinho.find((p) => p.id === produto.id)) {
+      alert('Item já adicionado')
+    } else {
+      setCarrinho([...carrinho, produto])
     }
   }
 

@@ -6,15 +6,15 @@ import * as S from './styles'
 type Props = {
   produtos: ProdutoType[]
   favoritos: ProdutoType[]
-  adicionarAoCarrinho: (produto: ProdutoType) => void
   favoritar: (produto: ProdutoType) => void
+  adicionarAoCarrinho: (produto: ProdutoType) => void
 }
 
 const ProdutosComponent = ({
   produtos,
   favoritos,
-  adicionarAoCarrinho,
-  favoritar
+  favoritar,
+  adicionarAoCarrinho
 }: Props) => {
   const produtoEstaNosFavoritos = (produto: ProdutoType) => {
     const produtoId = produto.id
@@ -26,11 +26,11 @@ const ProdutosComponent = ({
   return (
     <>
       <S.Produtos>
-        {produtos.map((produto) => (
+        {produtos.map((p) => (
           <Produto
-            estaNosFavoritos={produtoEstaNosFavoritos(produto)}
-            key={produto.id}
-            produto={produto}
+            estaNosFavoritos={produtoEstaNosFavoritos(p)}
+            key={p.id}
+            produto={p}
             favoritar={favoritar}
             aoComprar={adicionarAoCarrinho}
           />

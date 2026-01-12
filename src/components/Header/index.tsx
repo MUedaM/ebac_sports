@@ -6,8 +6,8 @@ import cesta from '../../assets/cesta.png'
 import { paraReal } from '../Produto'
 
 type Props = {
-  itensNoCarrinho: Produto[]
   favoritos: Produto[]
+  itensNoCarrinho: Produto[]
 }
 
 const Header = ({ itensNoCarrinho, favoritos }: Props) => {
@@ -21,7 +21,7 @@ const Header = ({ itensNoCarrinho, favoritos }: Props) => {
       <h1>EBAC Sports</h1>
       <div>
         <span>{favoritos.length} favoritos</span>
-        <img src={cesta} />
+        <img src={cesta} alt="Carrinho de compras" />
         <span>
           {itensNoCarrinho.length} itens, valor total: {paraReal(valorTotal)}
         </span>

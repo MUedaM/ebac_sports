@@ -15,9 +15,9 @@ export const paraReal = (valor: number) =>
 
 const ProdutoComponent = ({
   produto,
-  aoComprar,
   favoritar,
-  estaNosFavoritos
+  estaNosFavoritos,
+  aoComprar
 }: Props) => {
   return (
     <S.Produto>
