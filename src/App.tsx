@@ -71,20 +71,22 @@ function App() {
     setProdutos(ListaProdutos)
   }, [])
 
-  function favoritar(produto: Produto) {
-    if (favoritos.find((p) => p.id === produto.id)) {
-      const favoritosSemProduto = favoritos.filter((p) => p.id !== produto.id)
+  function favoritar(item: Produto) {
+    if (favoritos.find((p) => p.id === item.id)) {
+      const favoritosSemProduto = favoritos.filter((p) => p.id !== item.id)
+      console.log(item.id)
+      console.log(favoritos.filter((p) => p.id !== item.id))
       setFavoritos(favoritosSemProduto)
     } else {
-      setFavoritos([...favoritos, produto])
+      setFavoritos([...favoritos, item])
     }
   }
 
-  function adicionar(produto: Produto) {
-    if (carrinho.find((p) => p.id === produto.id)) {
+  function adicionar(item: Produto) {
+    if (carrinho.find((p) => p.id === item.id)) {
       alert('Item já adicionado')
     } else {
-      setCarrinho([...carrinho, produto])
+      setCarrinho([...carrinho, item])
     }
   }
 

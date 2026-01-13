@@ -5,7 +5,7 @@ type Props = {
   produto: ProdutoType
   favoritar: (produto: ProdutoType) => void
   adicionar: (produto: ProdutoType) => void
-  estaNosFavoritos: boolean
+  inclusoFavoritos: boolean
 }
 
 export const paraReal = (valor: number) =>
@@ -16,8 +16,8 @@ export const paraReal = (valor: number) =>
 const ProdutoComponent = ({
   produto,
   favoritar,
-  estaNosFavoritos,
-  adicionar
+  adicionar,
+  inclusoFavoritos
 }: Props) => {
   return (
     <S.Produto>
@@ -29,7 +29,7 @@ const ProdutoComponent = ({
         <strong>{paraReal(produto.preco)}</strong>
       </S.Prices>
       <S.BtnComprar onClick={() => favoritar(produto)} type="button">
-        {estaNosFavoritos
+        {inclusoFavoritos
           ? '- Remover dos favoritos'
           : '+ Adicionar aos favoritos'}
       </S.BtnComprar>
