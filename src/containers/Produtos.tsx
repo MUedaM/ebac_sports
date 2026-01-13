@@ -7,14 +7,14 @@ type Props = {
   produtos: ProdutoType[]
   favoritos: ProdutoType[]
   favoritar: (produto: ProdutoType) => void
-  adicionarAoCarrinho: (produto: ProdutoType) => void
+  adicionar: (produto: ProdutoType) => void
 }
 
 const ProdutosComponent = ({
   produtos,
   favoritos,
   favoritar,
-  adicionarAoCarrinho
+  adicionar
 }: Props) => {
   const produtoEstaNosFavoritos = (produto: ProdutoType) => {
     const produtoId = produto.id
@@ -32,7 +32,7 @@ const ProdutosComponent = ({
             key={p.id}
             produto={p}
             favoritar={favoritar}
-            aoComprar={adicionarAoCarrinho}
+            adicionar={adicionar}
           />
         ))}
       </S.Produtos>

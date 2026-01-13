@@ -80,7 +80,7 @@ function App() {
     }
   }
 
-  function adicionarAoCarrinho(produto: Produto) {
+  function adicionar(produto: Produto) {
     if (carrinho.find((p) => p.id === produto.id)) {
       alert('Item já adicionado')
     } else {
@@ -97,7 +97,7 @@ function App() {
           produtos={produtos}
           favoritos={favoritos}
           favoritar={favoritar}
-          adicionarAoCarrinho={adicionarAoCarrinho}
+          adicionar={adicionar}
         />
       </div>
     </>
