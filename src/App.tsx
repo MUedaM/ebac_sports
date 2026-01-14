@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Provider } from 'react-redux'
 import Header from './components/Header'
 import Produtos from './containers/Produtos'
+import { store } from './slice/index'
 
 import { GlobalStyle } from './styles'
 
@@ -64,7 +66,6 @@ const ListaProdutos: Produto[] = [
 
 function App() {
   const [produtos, setProdutos] = useState<Produto[]>([])
-  const [carrinho, setCarrinho] = useState<Produto[]>([])
   const [favoritos, setFavoritos] = useState<Produto[]>([])
 
   useEffect(() => {
@@ -73,36 +74,25 @@ function App() {
 
   function favoritar(item: Produto) {
     if (favoritos.find((p) => p.id === item.id)) {
-      const favoritosSemProduto = favoritos.filter((p) => p.id !== item.id)
-      console.log(item.id)
-      console.log(favoritos.filter((p) => p.id !== item.id))
-      setFavoritos(favoritosSemProduto)
+      const novaListaFavorito = favoritos.filter((p) => p.id !== item.id)
+      setFavoritos(novaListaFavorito)
     } else {
       setFavoritos([...favoritos, item])
     }
   }
 
-  function adicionar(item: Produto) {
-    if (carrinho.find((p) => p.id === item.id)) {
-      alert('Item já adicionado')
-    } else {
-      setCarrinho([...carrinho, item])
-    }
-  }
-
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyle />
       <div className="container">
-        <Header favoritos={favoritos} itensNoCarrinho={carrinho} />
+        <Header favoritos={favoritos} />
         <Produtos
           produtos={produtos}
           favoritos={favoritos}
           favoritar={favoritar}
-          adicionar={adicionar}
         />
       </div>
-    </>
+    </Provider>
   )
 }
 
