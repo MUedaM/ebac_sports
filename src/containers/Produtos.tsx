@@ -1,19 +1,19 @@
+import { useSelector } from 'react-redux'
+import * as S from './styles'
+
 import { Produto as ProdutoType } from '../App'
 import Produto from '../components/Produto'
 
-import * as S from './styles'
+import { RootReducer } from '../slice'
 
 type Props = {
   produtos: ProdutoType[]
-  favoritos: ProdutoType[]
-  favoritar: (item: ProdutoType) => void
 }
 
 const ProdutosComponent = ({
-  produtos,
-  favoritos,
-  favoritar,
+  produtos
 }: Props) => {
+  const favoritos = useSelector((state: RootReducer) => state.favorito.itens)
   const listaFavoritos = (produto: ProdutoType) => {
     const idProduto = produto.id
     const idFavoritos = favoritos.map((f) => f.id)
@@ -28,7 +28,6 @@ const ProdutosComponent = ({
           <Produto
             key={p.id}
             produto={p}
-            favoritar={favoritar}
             inclusoFavoritos={listaFavoritos(p)}
           />
         ))}

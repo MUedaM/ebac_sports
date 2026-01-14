@@ -66,30 +66,18 @@ const ListaProdutos: Produto[] = [
 
 function App() {
   const [produtos, setProdutos] = useState<Produto[]>([])
-  const [favoritos, setFavoritos] = useState<Produto[]>([])
 
   useEffect(() => {
     setProdutos(ListaProdutos)
   }, [])
 
-  function favoritar(item: Produto) {
-    if (favoritos.find((p) => p.id === item.id)) {
-      const novaListaFavorito = favoritos.filter((p) => p.id !== item.id)
-      setFavoritos(novaListaFavorito)
-    } else {
-      setFavoritos([...favoritos, item])
-    }
-  }
-
   return (
     <Provider store={store}>
       <GlobalStyle />
       <div className="container">
-        <Header favoritos={favoritos} />
+        <Header />
         <Produtos
           produtos={produtos}
-          favoritos={favoritos}
-          favoritar={favoritar}
         />
       </div>
     </Provider>
